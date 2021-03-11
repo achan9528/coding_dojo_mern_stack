@@ -1,9 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import {useState} from 'react';
 // import PersonCard from './components/PersonCard'
-import HookForm from './components/HookForm'
+// import HookForm from './components/HookForm'
+import ColorForm from './components/ColorForm'
+import ColorBox from './components/Box'
 
 function App() {
+  const[newColor, setNewColor] = useState("");
+  const [colors, setColors] = useState([]);
+
+  const addNewColor = (newColor) =>{
+    setNewColor(newColor);
+    setColors([...colors, newColor]);
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -38,8 +48,11 @@ function App() {
         <PersonCard firstName={"Maria"} lastName={"Smith"} age={62} hairColor={"Brown"}/> */}
 
         {/* Hook Form Assignment */}
-        <HookForm></HookForm>
+        {/* <HookForm></HookForm> */}
 
+        {/* Box Generator */}
+        <ColorForm onNewColor = {addNewColor}></ColorForm>
+        <ColorBox colors={colors}></ColorBox>
       </header>
     </div>
   );
