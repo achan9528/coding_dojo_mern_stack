@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react';
 // import PersonCard from './components/PersonCard'
 // import HookForm from './components/HookForm'
-import ColorForm from './components/ColorForm'
-import ColorBox from './components/Box'
+// import ColorForm from './components/ColorForm'
+// import ColorBox from './components/Box'
+import Tabs from './components/Tabs/tabs'
 
 function App() {
   const[newColor, setNewColor] = useState("");
@@ -51,8 +51,11 @@ function App() {
         {/* <HookForm></HookForm> */}
 
         {/* Box Generator */}
-        <ColorForm onNewColor = {addNewColor}></ColorForm>
-        <ColorBox colors={colors}></ColorBox>
+        {/* <ColorForm onNewColor = {addNewColor}></ColorForm>
+        <ColorBox colors={colors}></ColorBox> */}
+
+        {/* Tabs */}
+        <Tabs tabs={["This is the first", "This is the second", "This is the third"]}></Tabs>
       </header>
     </div>
   );
