@@ -6,9 +6,9 @@ const ToDoList = (props) => {
     return(
         <ul style={{listStyleType:"none"}}>
             {
-                tasks.map( (item,i) => 
-                    <li>
-                        <Task key={i} index={i} name={item} deleteTask={props.removeTask}>{item}</Task>
+                props.tasks.map( (item,i) => 
+                    <li key={i}>
+                        <Task index={i} name={item} deleteTask={props.removeTask}>{item}</Task>
                         {/* {item}; */}
                     </li>
                 )

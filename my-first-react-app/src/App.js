@@ -1,5 +1,5 @@
 import './App.css';
-import {useState} from 'react';
+import { useState } from 'react';
 // import PersonCard from './components/PersonCard'
 // import HookForm from './components/HookForm'
 // import ColorForm from './components/ColorForm'
@@ -7,6 +7,7 @@ import {useState} from 'react';
 // import Tabs from './components/Tabs/tabs'
 import ToDoList from './components/ToDoList/ToDoList'
 import ToDoListForm from './components/ToDoList/ToDoListForm'
+import PokemonList from './components/PokemonAPI/fetch'
 
 function App() {
   // Box Generator
@@ -18,19 +19,33 @@ function App() {
   //   setColors([...colors, newColor]);
   // }
 
-  const[tasks, setTasks] = useState([]);
-  const addTask = (newTask) => {
-    setTasks([...tasks, newTask]);
-  };
+  // ToDo List
+  // const[tasks, setTasks] = useState([]);
+  // const addTask = (newTask) => {
+  //   setTasks([...tasks, newTask]);
+  // };
 
-  const removeTask = (key) => {
-    let tempArr = [];
-    for (let i = 0; i < tasks.length; i++){
-      if (i != key){
-        tempArr.push(tasks[i]);  
-      }
-    }
-    setTasks(tempArr);
+  // const removeTask = (key) => {
+  //   let tempArr = [];
+  //   for (let i = 0; i < tasks.length; i++){
+  //     if (i != key){
+  //       tempArr.push(tasks[i]);  
+  //     }
+  //   }
+  //   setTasks(tempArr);
+  // }
+
+  const [pokemon, setPokemon] = useState([])
+  const getPokemon = () => {
+    fetch("https://pokeapi.co/api/v2/pokemon?limit=2000")
+      .then(response => {
+        return response.json();
+      }).then(response => {
+        console.log(response);
+        setPokemon(response.results);
+      }).catch(err => {
+        console.log(err);
+      })
   }
 
 
@@ -61,7 +76,7 @@ function App() {
           <li>Feed the dogs</li>
         </ul> */}
 
-        
+
         {/* <PersonCard firstName={"Jane"} lastName={"Doe"} age={45} hairColor={"Black"}/>
         <PersonCard firstName={"John"} lastName={"Smith"} age={88} hairColor={"Brown"}/>
         <PersonCard firstName={"Millard"} lastName={"Fillmore"} age={50} hairColor={"Brown"}/>
@@ -76,8 +91,14 @@ function App() {
 
         {/* Tabs */}
         {/* <Tabs tabs={["This is the first", "This is the second", "This is the third"]}></Tabs> */}
-        <ToDoListForm onNewTask={addTask}></ToDoListForm>
-        <ToDoList tasks={tasks} removeTask={removeTask}></ToDoList>
+
+        {/* To Do List */}
+        {/* <ToDoListForm onNewTask={addTask}></ToDoListForm>
+        <ToDoList tasks={tasks} removeTask={removeTask}></ToDoList> */}
+
+        {/* PokemonAPIFetch */}
+        <button onClick={getPokemon}>Fetch Pokemon</button>
+        <PokemonList pokemon={pokemon}></PokemonList>
       </header>
     </div>
   );

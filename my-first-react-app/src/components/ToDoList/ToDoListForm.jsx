@@ -8,12 +8,12 @@ const ToDoListForm = (props) => {
         props.onNewTask(newTask);
     }
 
-    return(
+    return (
 
         <form onSubmit={handleSubmit}>
             <input
-            onChange={(e)=>setNewTask(e.target.value)} 
-            value={newTask}
+                onChange={(e) => setNewTask(e.target.value)}
+                value={newTask}
             ></input>
             <button>Submit</button>
         </form>
