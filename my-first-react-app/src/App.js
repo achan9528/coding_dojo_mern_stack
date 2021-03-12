@@ -4,16 +4,36 @@ import {useState} from 'react';
 // import HookForm from './components/HookForm'
 // import ColorForm from './components/ColorForm'
 // import ColorBox from './components/Box'
-import Tabs from './components/Tabs/tabs'
+// import Tabs from './components/Tabs/tabs'
+import ToDoList from './components/ToDoList/ToDoList'
+import ToDoListForm from './components/ToDoList/ToDoListForm'
 
 function App() {
-  const[newColor, setNewColor] = useState("");
-  const [colors, setColors] = useState([]);
+  // Box Generator
+  // const[newColor, setNewColor] = useState("");
+  // const [colors, setColors] = useState([]);
 
-  const addNewColor = (newColor) =>{
-    setNewColor(newColor);
-    setColors([...colors, newColor]);
+  // const addNewColor = (newColor) =>{
+  //   setNewColor(newColor);
+  //   setColors([...colors, newColor]);
+  // }
+
+  const[tasks, setTasks] = useState([]);
+  const addTask = (newTask) => {
+    setTasks([...tasks, newTask]);
+  };
+
+  const removeTask = (key) => {
+    let tempArr = [];
+    for (let i = 0; i < tasks.length; i++){
+      if (i != key){
+        tempArr.push(tasks[i]);  
+      }
+    }
+    setTasks(tempArr);
   }
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -55,7 +75,9 @@ function App() {
         <ColorBox colors={colors}></ColorBox> */}
 
         {/* Tabs */}
-        <Tabs tabs={["This is the first", "This is the second", "This is the third"]}></Tabs>
+        {/* <Tabs tabs={["This is the first", "This is the second", "This is the third"]}></Tabs> */}
+        <ToDoListForm onNewTask={addTask}></ToDoListForm>
+        <ToDoList tasks={tasks} removeTask={removeTask}></ToDoList>
       </header>
     </div>
   );
