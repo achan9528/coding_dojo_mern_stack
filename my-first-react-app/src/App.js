@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { Router } from '@reach/router';
+// import axios from 'axios';
 // import PersonCard from './components/PersonCard'
 // import HookForm from './components/HookForm'
 // import ColorForm from './components/ColorForm'
@@ -9,6 +10,11 @@ import axios from 'axios';
 // import ToDoList from './components/ToDoList/ToDoList'
 // import ToDoListForm from './components/ToDoList/ToDoListForm'
 // import PokemonList from './components/PokemonAPI/fetch'
+import Welcome from './components/RoutingPractice/Welcome'
+import Number from './components/RoutingPractice/Number'
+import Text from './components/RoutingPractice/Text'
+import Text2 from './components/RoutingPractice/Text2'
+// import {Welcome, Number, Text, Text2} from './components/RoutingPractice/Home'
 
 function App() {
   // Box Generator
@@ -37,8 +43,8 @@ function App() {
   // }
 
   // const [pokemon, setPokemon] = useState([])
-  const [responseData, setResponseData] = useState(null);
-  const getPokemon = () => {
+  // const [responseData, setResponseData] = useState(null);
+  // const getPokemon = () => {
     // fetch("https://pokeapi.co/api/v2/pokemon?limit=2000")
     //   .then(response => {
     //     return response.json();
@@ -49,16 +55,16 @@ function App() {
     //     console.log(err);
     //   })
 
-    axios.get("https://pokeapi.co/api/v2/pokemon?limit=2000")
-      .then(response => {
-        // console.log(response.data);
-        setResponseData(response.data.results.map( (index,i) => (
-          <div key={i}>
-            {index.name}
-          </div>
-      )));
-      })
-  }
+  //   axios.get("https://pokeapi.co/api/v2/pokemon?limit=2000")
+  //     .then(response => {
+  //       // console.log(response.data);
+  //       setResponseData(response.data.results.map((index, i) => (
+  //         <div key={i}>
+  //           {index.name}
+  //         </div>
+  //       )));
+  //     })
+  // }
 
 
   return (
@@ -109,12 +115,19 @@ function App() {
         <ToDoList tasks={tasks} removeTask={removeTask}></ToDoList> */}
 
         {/* PokemonAPIFetch */}
-        <div>
+        {/* <div>
           <button onClick={getPokemon}>Fetch Pokemon</button>
           {responseData}
-        </div>
+          {/* <PokemonList pokemon={pokemon}></PokemonList> */}
+        {/* </div> */}
 
-        {/* <PokemonList pokemon={pokemon}></PokemonList> */}
+        <Router>
+          <Welcome path="/home"></Welcome>
+          <Number path="/:id"></Number>
+          <Text path="/:word"></Text>
+          <Text2 path="/:word/:textColor/:bgColor"></Text2>
+        </Router>
+
       </header>
     </div>
   );
