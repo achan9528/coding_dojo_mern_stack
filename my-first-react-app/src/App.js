@@ -10,11 +10,14 @@ import { Router } from '@reach/router';
 // import ToDoList from './components/ToDoList/ToDoList'
 // import ToDoListForm from './components/ToDoList/ToDoListForm'
 // import PokemonList from './components/PokemonAPI/fetch'
-import Welcome from './components/RoutingPractice/Welcome'
-import Number from './components/RoutingPractice/Number'
-import Text from './components/RoutingPractice/Text'
-import Text2 from './components/RoutingPractice/Text2'
+// import Welcome from './components/RoutingPractice/Welcome'
+// import Number from './components/RoutingPractice/Number'
+// import Text from './components/RoutingPractice/Text'
+// import Text2 from './components/RoutingPractice/Text2'
 // import {Welcome, Number, Text, Text2} from './components/RoutingPractice/Home'
+import Search from './components/LukeAPIWalker/search'
+import Results from './components/LukeAPIWalker/Results'
+import axios from 'axios';
 
 function App() {
   // Box Generator
@@ -45,15 +48,15 @@ function App() {
   // const [pokemon, setPokemon] = useState([])
   // const [responseData, setResponseData] = useState(null);
   // const getPokemon = () => {
-    // fetch("https://pokeapi.co/api/v2/pokemon?limit=2000")
-    //   .then(response => {
-    //     return response.json();
-    //   }).then(response => {
-    //     console.log(response);
-    //     setPokemon(response.results);
-    //   }).catch(err => {
-    //     console.log(err);
-    //   })
+  // fetch("https://pokeapi.co/api/v2/pokemon?limit=2000")
+  //   .then(response => {
+  //     return response.json();
+  //   }).then(response => {
+  //     console.log(response);
+  //     setPokemon(response.results);
+  //   }).catch(err => {
+  //     console.log(err);
+  //   })
 
   //   axios.get("https://pokeapi.co/api/v2/pokemon?limit=2000")
   //     .then(response => {
@@ -66,6 +69,31 @@ function App() {
   //     })
   // }
 
+  const [results, setResults] = useState("")
+  const [choice, setChoice] = useState()
+  const [id, setID] = useState()
+
+
+  const SubmitHandler = (selectedValue, typedValue) => {
+    setChoice(selectedValue);
+    setID(typedValue);
+  }
+
+  useEffect(() => {
+    const lookup = "https://swapi.dev/api/" + choice + "/" + id;
+    console.log(lookup);
+    fetch(lookup)
+      .then(response => {
+        return response.json();
+      }).then(response => {
+        console.log(response);
+        setResults(response);
+      }).then(response => {
+        // const lookup = "http://localhost:3000/" + choice + "/" + id;
+      }).catch(err => {
+            console.log(err);
+          })
+  }, [id, choice])
 
   return (
     <div className="App">
@@ -121,13 +149,19 @@ function App() {
           {/* <PokemonList pokemon={pokemon}></PokemonList> */}
         {/* </div> */}
 
-        <Router>
+        {/* <Router>
           <Welcome path="/home"></Welcome>
           <Number path="/:id"></Number>
           <Text path="/:word"></Text>
           <Text2 path="/:word/:textColor/:bgColor"></Text2>
-        </Router>
+        </Router> */}
 
+        {/* LukeAPIWalker */}
+        <Router>
+          <Search path="/" submitHandler={SubmitHandler}></Search>
+          <Search path="/:choice/:id" submitHandler={SubmitHandler}></Search>
+        </Router>
+        <Results results={results}></Results>
       </header>
     </div>
   );
