@@ -1,0 +1,9 @@
+https://pokeapi.co/api/v2/pokemon/charmander
+
+https://pokeapi.co/api/v2/pokemon/squirtle
+
+https://pokeapi.co/api/v2/pokemon/pikachu
+
+https://pokeapi.co/api/v2/pokemon/bulbasaur
+
+https://pokeapi.co/api/v2/pokemon/mew
