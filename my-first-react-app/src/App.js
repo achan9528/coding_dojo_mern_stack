@@ -89,7 +89,7 @@ function App() {
         console.log(response);
         setResults(response);
       }).then(response => {
-        // const lookup = "http://localhost:3000/" + choice + "/" + id;
+        const lookup = "http://localhost:3000/" + choice + "/" + id;
       }).catch(err => {
             console.log(err);
           })

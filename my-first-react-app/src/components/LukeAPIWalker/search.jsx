@@ -20,13 +20,11 @@ const Search = (props) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(selectedValue);
-        console.log(typedValue);
         props.submitHandler(selectedValue, typedValue);
     }
 
     return (
-        <form onSubmit={submitHandler}>
+        <form onSubmit={submitHandler} method="post">
             <div>
                 <label htmlFor="choices">Search for:</label>
                 <select name="choices" value={selectedValue} onChange={(e) => { selectHandler(e) }}>
