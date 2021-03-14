@@ -1,13 +1,14 @@
 import './App.css';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 // import PersonCard from './components/PersonCard'
 // import HookForm from './components/HookForm'
 // import ColorForm from './components/ColorForm'
 // import ColorBox from './components/Box'
 // import Tabs from './components/Tabs/tabs'
-import ToDoList from './components/ToDoList/ToDoList'
-import ToDoListForm from './components/ToDoList/ToDoListForm'
-import PokemonList from './components/PokemonAPI/fetch'
+// import ToDoList from './components/ToDoList/ToDoList'
+// import ToDoListForm from './components/ToDoList/ToDoListForm'
+// import PokemonList from './components/PokemonAPI/fetch'
 
 function App() {
   // Box Generator
@@ -35,16 +36,27 @@ function App() {
   //   setTasks(tempArr);
   // }
 
-  const [pokemon, setPokemon] = useState([])
+  // const [pokemon, setPokemon] = useState([])
+  const [responseData, setResponseData] = useState(null);
   const getPokemon = () => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=2000")
+    // fetch("https://pokeapi.co/api/v2/pokemon?limit=2000")
+    //   .then(response => {
+    //     return response.json();
+    //   }).then(response => {
+    //     console.log(response);
+    //     setPokemon(response.results);
+    //   }).catch(err => {
+    //     console.log(err);
+    //   })
+
+    axios.get("https://pokeapi.co/api/v2/pokemon?limit=2000")
       .then(response => {
-        return response.json();
-      }).then(response => {
-        console.log(response);
-        setPokemon(response.results);
-      }).catch(err => {
-        console.log(err);
+        // console.log(response.data);
+        setResponseData(response.data.results.map( (index,i) => (
+          <div key={i}>
+            {index.name}
+          </div>
+      )));
       })
   }
 
@@ -97,8 +109,12 @@ function App() {
         <ToDoList tasks={tasks} removeTask={removeTask}></ToDoList> */}
 
         {/* PokemonAPIFetch */}
-        <button onClick={getPokemon}>Fetch Pokemon</button>
-        <PokemonList pokemon={pokemon}></PokemonList>
+        <div>
+          <button onClick={getPokemon}>Fetch Pokemon</button>
+          {responseData}
+        </div>
+
+        {/* <PokemonList pokemon={pokemon}></PokemonList> */}
       </header>
     </div>
   );
