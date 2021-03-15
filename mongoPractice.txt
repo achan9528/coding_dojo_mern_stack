@@ -1,0 +1,224 @@
+MongoDB shell version v4.4.3
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("b26f4923-18e2-4871-9bff-7e8863975af4") }
+MongoDB server version: 4.4.3
+---
+The server generated these startup warnings when booting: 
+        2021-03-15T09:58:10.462-07:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> use my_first_db
+switched to db my_first_db
+> my_first_db.createCollection("students")
+uncaught exception: ReferenceError: my_first_db is not defined :
+@(shell):1:1
+> db.createCollection("students")
+{ "ok" : 1 }
+> db.students.insert({name:"Alex", home_state:"CA",lucky_number:28,birthday:{month:1, day: 1, year:1111}}
+... ;
+... )
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):2:0
+> db.students.insert({name:"Alex", home_state:"CA",lucky_number:28,birthday:{month:1, day: 1, year:1111}})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name:"Chris", home_state:"CA",lucky_number:28,birthday:{month:2, day: 2, year:2222}})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name:"Eric", home_state:"CA",lucky_number:19,birthday:{month:2, day: 3, year:3333}})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name:"Geodude", home_state:"CA",lucky_number:44,birthday:{month:4, day: 4, year:4444}})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name:"Snorlax", home_state:"CA",lucky_number:44,birthday:{month:4, day: 4, year:4444}})
+WriteResult({ "nInserted" : 1 })
+> db.students.find()
+{ "_id" : ObjectId("604f9a8e4d69e0269a259831"), "name" : "Alex", "home_state" : "CA", "lucky_number" : 28, "birthday" : { "month" : 1, "day" : 1, "year" : 1111 } }
+{ "_id" : ObjectId("604f9aa94d69e0269a259832"), "name" : "Chris", "home_state" : "CA", "lucky_number" : 28, "birthday" : { "month" : 2, "day" : 2, "year" : 2222 } }
+{ "_id" : ObjectId("604f9ac64d69e0269a259833"), "name" : "Eric", "home_state" : "CA", "lucky_number" : 19, "birthday" : { "month" : 2, "day" : 3, "year" : 3333 } }
+{ "_id" : ObjectId("604f9adb4d69e0269a259834"), "name" : "Geodude", "home_state" : "CA", "lucky_number" : 44, "birthday" : { "month" : 4, "day" : 4, "year" : 4444 } }
+{ "_id" : ObjectId("604f9ae64d69e0269a259835"), "name" : "Snorlax", "home_state" : "CA", "lucky_number" : 44, "birthday" : { "month" : 4, "day" : 4, "year" : 4444 } }
+> db.students.find({home_state:"CA"})
+{ "_id" : ObjectId("604f9a8e4d69e0269a259831"), "name" : "Alex", "home_state" : "CA", "lucky_number" : 28, "birthday" : { "month" : 1, "day" : 1, "year" : 1111 } }
+{ "_id" : ObjectId("604f9aa94d69e0269a259832"), "name" : "Chris", "home_state" : "CA", "lucky_number" : 28, "birthday" : { "month" : 2, "day" : 2, "year" : 2222 } }
+{ "_id" : ObjectId("604f9ac64d69e0269a259833"), "name" : "Eric", "home_state" : "CA", "lucky_number" : 19, "birthday" : { "month" : 2, "day" : 3, "year" : 3333 } }
+{ "_id" : ObjectId("604f9adb4d69e0269a259834"), "name" : "Geodude", "home_state" : "CA", "lucky_number" : 44, "birthday" : { "month" : 4, "day" : 4, "year" : 4444 } }
+{ "_id" : ObjectId("604f9ae64d69e0269a259835"), "name" : "Snorlax", "home_state" : "CA", "lucky_number" : 44, "birthday" : { "month" : 4, "day" : 4, "year" : 4444 } }
+> db.students.find({lucky_number}:{$gt:3})
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:31
+> db.students.find({lucky_number:{$gt:3}})
+{ "_id" : ObjectId("604f9a8e4d69e0269a259831"), "name" : "Alex", "home_state" : "CA", "lucky_number" : 28, "birthday" : { "month" : 1, "day" : 1, "year" : 1111 } }
+{ "_id" : ObjectId("604f9aa94d69e0269a259832"), "name" : "Chris", "home_state" : "CA", "lucky_number" : 28, "birthday" : { "month" : 2, "day" : 2, "year" : 2222 } }
+{ "_id" : ObjectId("604f9ac64d69e0269a259833"), "name" : "Eric", "home_state" : "CA", "lucky_number" : 19, "birthday" : { "month" : 2, "day" : 3, "year" : 3333 } }
+{ "_id" : ObjectId("604f9adb4d69e0269a259834"), "name" : "Geodude", "home_state" : "CA", "lucky_number" : 44, "birthday" : { "month" : 4, "day" : 4, "year" : 4444 } }
+{ "_id" : ObjectId("604f9ae64d69e0269a259835"), "name" : "Snorlax", "home_state" : "CA", "lucky_number" : 44, "birthday" : { "month" : 4, "day" : 4, "year" : 4444 } }
+> db.students.find({lucky_number:{$lte:10}})
+> db.students.find({lucky_number:{$lte:9,$gte:1}})
+> db.students.update(db.students.find(),{$set:{"interests":["coding","brunch","MongoDB"]}})
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.students.updateMany({},{$set:{"interests":["coding","brunch","MongoDB"]}})
+{ "acknowledged" : true, "matchedCount" : 5, "modifiedCount" : 5 }
+> db.students.find()
+{ "_id" : ObjectId("604f9a8e4d69e0269a259831"), "name" : "Alex", "home_state" : "CA", "lucky_number" : 28, "birthday" : { "month" : 1, "day" : 1, "year" : 1111 }, "interests" : [ "coding", "brunch", "MongoDB" ] }
+{ "_id" : ObjectId("604f9aa94d69e0269a259832"), "name" : "Chris", "home_state" : "CA", "lucky_number" : 28, "birthday" : { "month" : 2, "day" : 2, "year" : 2222 }, "interests" : [ "coding", "brunch", "MongoDB" ] }
+{ "_id" : ObjectId("604f9ac64d69e0269a259833"), "name" : "Eric", "home_state" : "CA", "lucky_number" : 19, "birthday" : { "month" : 2, "day" : 3, "year" : 3333 }, "interests" : [ "coding", "brunch", "MongoDB" ] }
+{ "_id" : ObjectId("604f9adb4d69e0269a259834"), "name" : "Geodude", "home_state" : "CA", "lucky_number" : 44, "birthday" : { "month" : 4, "day" : 4, "year" : 4444 }, "interests" : [ "coding", "brunch", "MongoDB" ] }
+{ "_id" : ObjectId("604f9ae64d69e0269a259835"), "name" : "Snorlax", "home_state" : "CA", "lucky_number" : 44, "birthday" : { "month" : 4, "day" : 4, "year" : 4444 }, "interests" : [ "coding", "brunch", "MongoDB" ] }
+> db.students.update({name:"Alex"},{$push:{"interests":"snowboarding"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find({name:"Alex"})
+{ "_id" : ObjectId("604f9a8e4d69e0269a259831"), "name" : "Alex", "home_state" : "CA", "lucky_number" : 28, "birthday" : { "month" : 1, "day" : 1, "year" : 1111 }, "interests" : [ "coding", "brunch", "MongoDB", "snowboarding" ] }
+> db.students.update({name:"Chris"},{$push:{"interests":"kites"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.update({name:"Eric"},{$push:{"interests":"plants"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.update({name:"geodude"},{$push:{"interests":"rocks"}})
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.students.update({name:"Geodude"},{$push:{"interests":"rocks"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.update({name:"Snorlax"},{$push:{"interests":"sleeping"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.update({name:"Snorlax"},{$push:{"interests":"taxes"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.update({name:"Snorlax"},{$pull:{"interests":"taxes"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.remove({name:"Snorlax"})
+WriteResult({ "nRemoved" : 1 })
+> db.students.remove({lucky_number:{$gt:5}},true)
+WriteResult({ "nRemoved" : 1 })
+> db.students.updateMany({},{number_of_belts:0})
+uncaught exception: Error: the update operation document must contain atomic operators :
+DBCollection.prototype.updateMany@src/mongo/shell/crud_api.js:655:19
+@(shell):1:1
+> db.students.updateMany({},{$set:{number_of_belts:0}})
+{ "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 3 }
+> db.students.updateMany({state:"WA"},{$inc:{number_of_belts:1}})
+{ "acknowledged" : true, "matchedCount" : 0, "modifiedCount" : 0 }
+> db.students.updateMany({},{$rename:{number_of_belts:'belts earned}})
+uncaught exception: SyntaxError: '' literal not terminated before end of script :
+@(shell):1:68
+> db.students.updateMany({},{$rename:{number_of_belts:'belts earned'}})
+{ "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 3 }
+> db.students.find()
+{ "_id" : ObjectId("604f9aa94d69e0269a259832"), "name" : "Chris", "home_state" : "CA", "lucky_number" : 28, "birthday" : { "month" : 2, "day" : 2, "year" : 2222 }, "interests" : [ "coding", "brunch", "MongoDB", "kites" ], "belts earned" : 0 }
+{ "_id" : ObjectId("604f9ac64d69e0269a259833"), "name" : "Eric", "home_state" : "CA", "lucky_number" : 19, "birthday" : { "month" : 2, "day" : 3, "year" : 3333 }, "interests" : [ "coding", "brunch", "MongoDB", "plants" ], "belts earned" : 0 }
+{ "_id" : ObjectId("604f9adb4d69e0269a259834"), "name" : "Geodude", "home_state" : "CA", "lucky_number" : 44, "birthday" : { "month" : 4, "day" : 4, "year" : 4444 }, "interests" : [ "coding", "brunch", "MongoDB", "rocks" ], "belts earned" : 0 }
+> db.students.updateMany({},{$unset:{lucky_number:""}})
+{ "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 3 }
+> db.students.find()
+{ "_id" : ObjectId("604f9aa94d69e0269a259832"), "name" : "Chris", "home_state" : "CA", "birthday" : { "month" : 2, "day" : 2, "year" : 2222 }, "interests" : [ "coding", "brunch", "MongoDB", "kites" ], "belts earned" : 0 }
+{ "_id" : ObjectId("604f9ac64d69e0269a259833"), "name" : "Eric", "home_state" : "CA", "birthday" : { "month" : 2, "day" : 3, "year" : 3333 }, "interests" : [ "coding", "brunch", "MongoDB", "plants" ], "belts earned" : 0 }
+{ "_id" : ObjectId("604f9adb4d69e0269a259834"), "name" : "Geodude", "home_state" : "CA", "birthday" : { "month" : 4, "day" : 4, "year" : 4444 }, "interests" : [ "coding", "brunch", "MongoDB", "rocks" ], "belts earned" : 0 }
+> db.students.updateMany({},{$currentDate:{updated_on}})
+uncaught exception: ReferenceError: updated_on is not defined :
+@(shell):1:42
+> db.students.updateMany({},{$currentDate:{updated_on:"date"}})
+WriteError({
+	"index" : 0,
+	"code" : 2,
+	"errmsg" : "string is not valid type for $currentDate. Please use a boolean ('true') or a $type expression ({$type: 'timestamp/date'}).",
+	"op" : {
+		"q" : {
+			
+		},
+		"u" : {
+			"$currentDate" : {
+				"updated_on" : "date"
+			}
+		},
+		"multi" : true,
+		"upsert" : false
+	}
+}) :
+WriteError({
+	"index" : 0,
+	"code" : 2,
+	"errmsg" : "string is not valid type for $currentDate. Please use a boolean ('true') or a $type expression ({$type: 'timestamp/date'}).",
+	"op" : {
+		"q" : {
+			
+		},
+		"u" : {
+			"$currentDate" : {
+				"updated_on" : "date"
+			}
+		},
+		"multi" : true,
+		"upsert" : false
+	}
+})
+WriteError@src/mongo/shell/bulk_api.js:458:48
+mergeBatchResults@src/mongo/shell/bulk_api.js:855:49
+executeBatch@src/mongo/shell/bulk_api.js:919:13
+Bulk/this.execute@src/mongo/shell/bulk_api.js:1163:21
+DBCollection.prototype.updateMany@src/mongo/shell/crud_api.js:690:17
+@(shell):1:1
+> db.students.updateMany({},{$currentDate:{updated_on:{$type"date"}}})
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:58
+> db.students.updateMany({},{$currentDate:{updated_on:""}})
+WriteError({
+	"index" : 0,
+	"code" : 2,
+	"errmsg" : "string is not valid type for $currentDate. Please use a boolean ('true') or a $type expression ({$type: 'timestamp/date'}).",
+	"op" : {
+		"q" : {
+			
+		},
+		"u" : {
+			"$currentDate" : {
+				"updated_on" : ""
+			}
+		},
+		"multi" : true,
+		"upsert" : false
+	}
+}) :
+WriteError({
+	"index" : 0,
+	"code" : 2,
+	"errmsg" : "string is not valid type for $currentDate. Please use a boolean ('true') or a $type expression ({$type: 'timestamp/date'}).",
+	"op" : {
+		"q" : {
+			
+		},
+		"u" : {
+			"$currentDate" : {
+				"updated_on" : ""
+			}
+		},
+		"multi" : true,
+		"upsert" : false
+	}
+})
+WriteError@src/mongo/shell/bulk_api.js:458:48
+mergeBatchResults@src/mongo/shell/bulk_api.js:855:49
+executeBatch@src/mongo/shell/bulk_api.js:919:13
+Bulk/this.execute@src/mongo/shell/bulk_api.js:1163:21
+DBCollection.prototype.updateMany@src/mongo/shell/crud_api.js:690:17
+@(shell):1:1
+> db.students.updateMany({},{$currentDate:{updated_on:true}})
+{ "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 3 }
+> db.students.find()
+{ "_id" : ObjectId("604f9aa94d69e0269a259832"), "name" : "Chris", "home_state" : "CA", "birthday" : { "month" : 2, "day" : 2, "year" : 2222 }, "interests" : [ "coding", "brunch", "MongoDB", "kites" ], "belts earned" : 0, "updated_on" : ISODate("2021-03-15T18:04:19.009Z") }
+{ "_id" : ObjectId("604f9ac64d69e0269a259833"), "name" : "Eric", "home_state" : "CA", "birthday" : { "month" : 2, "day" : 3, "year" : 3333 }, "interests" : [ "coding", "brunch", "MongoDB", "plants" ], "belts earned" : 0, "updated_on" : ISODate("2021-03-15T18:04:19.009Z") }
+{ "_id" : ObjectId("604f9adb4d69e0269a259834"), "name" : "Geodude", "home_state" : "CA", "birthday" : { "month" : 4, "day" : 4, "year" : 4444 }, "interests" : [ "coding", "brunch", "MongoDB", "rocks" ], "belts earned" : 0, "updated_on" : ISODate("2021-03-15T18:04:19.009Z") }
+> db.students.remove({state:"CA"})
+WriteResult({ "nRemoved" : 0 })
+> db.students.find()
+{ "_id" : ObjectId("604f9aa94d69e0269a259832"), "name" : "Chris", "home_state" : "CA", "birthday" : { "month" : 2, "day" : 2, "year" : 2222 }, "interests" : [ "coding", "brunch", "MongoDB", "kites" ], "belts earned" : 0, "updated_on" : ISODate("2021-03-15T18:04:19.009Z") }
+{ "_id" : ObjectId("604f9ac64d69e0269a259833"), "name" : "Eric", "home_state" : "CA", "birthday" : { "month" : 2, "day" : 3, "year" : 3333 }, "interests" : [ "coding", "brunch", "MongoDB", "plants" ], "belts earned" : 0, "updated_on" : ISODate("2021-03-15T18:04:19.009Z") }
+{ "_id" : ObjectId("604f9adb4d69e0269a259834"), "name" : "Geodude", "home_state" : "CA", "birthday" : { "month" : 4, "day" : 4, "year" : 4444 }, "interests" : [ "coding", "brunch", "MongoDB", "rocks" ], "belts earned" : 0, "updated_on" : ISODate("2021-03-15T18:04:19.009Z") }
+> db.students.remove({home_state:"CA"})
+WriteResult({ "nRemoved" : 3 })
+> db.students.find()
+> ^C
+bye
