@@ -18,6 +18,7 @@ const ProductForm = (props) => {
         axios.post('http://localhost:8000/api/products/new', newProduct)
         .then( results => {
             console.log(results);
+            props.setProducts([...props.products, newProduct])
         }).catch( err => {
             console.log(err);
         })

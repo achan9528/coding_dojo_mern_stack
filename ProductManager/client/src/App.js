@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import ProductForm from './components/productForm'
+import { Router } from '@reach/router'
+import Home from './views/Home'
+// import ProductDetail from './views/ProductDetail'
 
 function App() {
   return (
@@ -18,7 +20,14 @@ function App() {
         >
           Learn React
         </a> */}
-        <ProductForm></ProductForm>
+        <div>
+          <Router>
+              <Home path="/"></Home>
+              {/* <ProductDetail path="/product/:id"></ProductDetail> */}
+          </Router>
+        </div>
+
+        {/* <ProductForm></ProductForm> */}
       </header>
     </div>
   );
