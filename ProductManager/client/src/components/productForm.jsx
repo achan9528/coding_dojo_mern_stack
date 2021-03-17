@@ -2,23 +2,20 @@ import axios from 'axios';
 import react, { useState } from 'react'
 
 const ProductForm = (props) => {
-    const [newProduct, setNewProduct] = useState({});
     const [title, setTitle] = useState("");
-    const [number, setNumber] = useState("");
+    const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
 
     const submitHandler = (e) => {
         e.preventDefault();
-        setNewProduct({
+        axios.post('http://localhost:8000/api/products/new', {
             title: title,
-            price: number,
+            price: price,
             description: description,
         })
-        console.log(newProduct);
-        axios.post('http://localhost:8000/api/products/new', newProduct)
         .then( results => {
             console.log(results);
-            props.setProducts([...props.products, newProduct])
+            props.addProduct(results.data.product);
         }).catch( err => {
             console.log(err);
         })
@@ -28,16 +25,19 @@ const ProductForm = (props) => {
         <form onSubmit={submitHandler} method="post">
             <div>
                 <label>
+                    Title:
                     <input type="text" onChange={e=>setTitle(e.target.value)} value={title}></input>
                 </label>
             </div>
             <div>
                 <label>
-                    <input type="text" onChange={e=>setNumber(e.target.value)} value={number}></input>
+                    Price:
+                    <input type="text" onChange={e=>setPrice(e.target.value)} value={price}></input>
                 </label>
             </div>
             <div>
                 <label>
+                    Description:
                     <input type="text" onChange={e=>setDescription(e.target.value)} value={description}></input>
                 </label>
             </div>

@@ -3,6 +3,7 @@ import './App.css';
 import { Router } from '@reach/router'
 import Home from './views/Home'
 import ProductDetail from './views/ProductDetail'
+import UpdateProduct from './views/UpdateProduct'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Router>
               <Home path="/"></Home>
               <ProductDetail path="/products/:id"></ProductDetail>
+              <UpdateProduct path="/products/:id/edit"></UpdateProduct>
           </Router>
         </div>
 

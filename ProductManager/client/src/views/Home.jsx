@@ -16,10 +16,25 @@ const Home = (props) => {
         })
     }, [])
 
+    const deleteProduct = (product) => {
+        axios.delete("http://localhost:8000/api/products/delete/" + product._id)
+        .then(response => {
+            console.log(products);
+            setProducts(products.filter(p=>p._id!=product._id));
+            // console.log(products);
+        }).catch((err)=>{
+            console.log(err);
+        });
+    }
+
+    const addProduct = (newProduct) => {
+        setProducts([...products, newProduct]);
+    }
+
     return (
         <div>
-            <ProductForm products={products} setProducts={setProducts}></ProductForm>
-            <ProductList products={products}></ProductList>
+            <ProductForm products={products} addProduct={addProduct}></ProductForm>
+            <ProductList products={products} deleteProduct={deleteProduct}></ProductList>
         </div>
     )
 }
