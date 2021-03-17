@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { Router } from '@reach/router'
 import Home from './views/Home'
-// import ProductDetail from './views/ProductDetail'
+import ProductDetail from './views/ProductDetail'
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         <div>
           <Router>
               <Home path="/"></Home>
-              {/* <ProductDetail path="/product/:id"></ProductDetail> */}
+              <ProductDetail path="/products/:id"></ProductDetail>
           </Router>
         </div>
 
