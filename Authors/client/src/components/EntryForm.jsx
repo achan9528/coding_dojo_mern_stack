@@ -18,7 +18,7 @@ const EntryForm = (props) => {
         } else if (name.length < 3) {
             setNameError("Name must be at least 3 characters long!");
         } else {
-            console.log(err);
+            props.submitHandler(e,name);
         }
     }
 

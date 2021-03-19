@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Link } from '@reach/router'
+import { Link, navigate } from '@reach/router'
 import { useState, useEffect } from 'react';
 import PageTitle from '../components/PageTitle'
 import EntryForm from '../components/EntryForm'
@@ -25,6 +25,7 @@ const UpdateAuthor = (props) => {
         })
         .then(response=>{
             console.log(response.data);
+            navigate("/");
         }).catch(err=>{
             console.log(err);
         })
