@@ -15,7 +15,7 @@ io.on("connection", socket => {
     console.log("Nice to meet you, (shake hand)");
 
     socket.on("event_from_client", data=>{
-        socket.broadcast.emit("send_data_to_all_other_cleints", data);
+        io.emit("new_message_from_server", data);
     });
 });
 

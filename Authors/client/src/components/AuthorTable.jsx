@@ -34,7 +34,7 @@ const AuthorTable = (props) => {
             })
     }
 
-    if (loaded){
+    // if (loaded){
         return (
             <table>
                 <thead>
@@ -60,8 +60,8 @@ const AuthorTable = (props) => {
                 </tbody>
             </table>
         )
-    }
-    return null;
+    // }
+    // return null;
 }
 
 export default AuthorTable;
