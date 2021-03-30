@@ -17,6 +17,9 @@ const ChatRoom = (props) => {
         socket.on('new_message_from_server', data => {
             console.log(data.message);
             console.log(data.author);
+            console.log("message received");
+            // if the data has some images associated, first
+            // print the text, then print the images afterwards
             setMessages(prevMessages => {
                 return [...prevMessages, data];
             })
