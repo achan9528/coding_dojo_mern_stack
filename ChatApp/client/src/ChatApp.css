@@ -1,0 +1,48 @@
+.message-thread{
+    overflow-y: scroll;
+    list-style-type: none;
+    margin: auto;
+    padding: 0px;
+    height: 250px;
+    width: 75%;
+}
+
+.unbulleted-noPadding{
+    list-style-type: none;
+    padding: 0px;
+}
+
+.message-thread img{
+    max-width: 100%;
+    padding-top: 0%;
+}
+
+.message-thread .userMessage{
+    max-width: 75%;
+    text-align: left;
+}
+
+.message-thread .otherMessage{
+    max-width: 75%;
+    text-align: left;
+    position: relative;
+    left: 25%
+}
+
+.messageInput{
+    overflow: auto;
+    height: 75%;
+    width: 75%;
+    margin: auto;
+}
+
+.messageInput div{
+    width: 75%;
+    border: 2px solid black;
+    display: inline-block;
+}
+
+.messageInput button{
+    vertical-align: top;
+    display: inline-block;
+}
