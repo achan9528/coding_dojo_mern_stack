@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
-import '../App.css';
+import '../ChatApp.css';
 import MessageBox from './MessageBox'
 import MessageThread from './MessageThread'
 
@@ -36,7 +36,7 @@ const ChatRoom = (props) => {
     }
 
     return (
-        <div>
+        <div className="chatRoom">
             <h1>MERN Chat</h1>
             <MessageThread username={props.username} messages={messages}></MessageThread>
             <MessageBox submitMessage={submitMessage}></MessageBox>

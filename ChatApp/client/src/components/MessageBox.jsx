@@ -5,20 +5,36 @@ import '../App.css';
 const MessageBox = (props) => {
     const [userMessage, setUserMessage] = useState("");
 
-    const enterListener = (e) =>{
-        if (e.code==="Enter"){
+    const enterListener = (e) => {
+        if (e.code === "Enter") {
+            e.preventDefault()
             document.getElementById("submitMessage").click();
+            clearMessageBox();
         }
+    }
+
+    const clearMessageBox = () => {
+        // delete each child element
+        while (document.getElementById("messageInputBox").firstChild) {
+            document.getElementById("messageInputBox").removeChild(
+                document.getElementById("messageInputBox")
+                    .firstChild
+            );
+        }
+        // clear the inner text in case there is any message
+        // left
+        document.getElementById("messageInputBox").innerText = "";
+        console.log("clearing Message")
     }
 
     const submitHandler = (e) => {
         // alert("triggered the submitHandler");
-        e.preventDefault();        
+        e.preventDefault();
         // for each pasted item, grab each pasted image if any
         let imgSrcArr = [];
-        for (let i = 0; i < document.getElementById("messageInputBox").children.length; i++) {            
+        for (let i = 0; i < document.getElementById("messageInputBox").children.length; i++) {
             let temp = document.getElementById("messageInputBox").children[i];
-            if (temp.tagName=="IMG"){
+            if (temp.tagName == "IMG") {
                 imgSrcArr.push(temp.src);
             }
         }
@@ -27,16 +43,7 @@ const MessageBox = (props) => {
             text: e.target.children[0].innerText,
             images: imgSrcArr,
         });
-        // delete each child element
-        while (document.getElementById("messgeInputBox")) {
-            document.getElementById("messgeInputBox").removeChild(
-                document.getElementById("messgeInputBox")
-                    .firstChild
-            );
-        }
-        // clear the inner text in case there is any message
-        // left
-        document.getElementById("messageInputBox").innerText = "";
+        clearMessageBox();
     }
 
     return (
@@ -44,7 +51,7 @@ const MessageBox = (props) => {
             <div
                 contentEditable={true}
                 value={userMessage}
-                onKeyDown={(e)=>{enterListener(e)}}
+                onKeyDown={(e) => { enterListener(e) }}
                 id="messageInputBox"></div>
             <button id="submitMessage">Send</button>
         </form>

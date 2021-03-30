@@ -1,3 +1,7 @@
+.chatRoom{
+    width:75%
+}
+
 .message-thread{
     overflow-y: scroll;
     list-style-type: none;
@@ -17,6 +21,12 @@
     padding-top: 0%;
 }
 
+.message-thread li{
+    word-wrap: normal;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .message-thread .userMessage{
     max-width: 75%;
     text-align: left;
@@ -26,7 +36,7 @@
     max-width: 75%;
     text-align: left;
     position: relative;
-    left: 25%
+    left: 25%;
 }
 
 .messageInput{
