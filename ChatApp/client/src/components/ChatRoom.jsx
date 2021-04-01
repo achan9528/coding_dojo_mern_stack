@@ -26,6 +26,7 @@ const ChatRoom = (props) => {
     useEffect(() => {
         // we need to set up all of our event listeners
         // in the useEffect callback function
+        
         socket.on('Welcome', data => console.log(data));
         socket.on('new_message_from_server', data => {
             console.log(data.message);

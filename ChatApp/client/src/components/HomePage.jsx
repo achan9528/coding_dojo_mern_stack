@@ -14,19 +14,15 @@ const HomePage = (props) => {
 
     return (
         <div className="Home">
-            <h1>MERN Chat</h1>
+            <h1>Welcome to the world</h1>
             <form onSubmit={submitHandler}>
-                <h2>I want to start chatting with the name...</h2>
-                <label>
-                    <input onChange={e => { setUsername(e.target.value) }} placeholder="My name"></input>
-                </label>
-                <label>
-                    Chat Room Name:
-                    <input name="socketName"
-                        onChange={e => { setSocketName(e.target.value) }}
-                        value={socketName}></input>
-                </label>
-                <button>Start Chatting</button>
+                <input onChange={e => { setUsername(e.target.value) }}
+                    placeholder="Username"></input>
+                <input name="socketName"
+                    onChange={e => { setSocketName(e.target.value) }}
+                    value={socketName}
+                    placeholder="Room Name"></input>
+                <button className="arrow"></button>
             </form>
         </div>
     );

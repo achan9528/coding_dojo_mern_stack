@@ -10,7 +10,7 @@ const MessageThread = (props) => {
     }, [props])
 
     const scrollToBottom = () => {
-        document.getElementById("documentBody").scrollIntoView()
+        // document.getElementById("documentBody").scrollIntoView()
         document.getElementById("dummy").scrollIntoView(
             true
         );
@@ -57,7 +57,7 @@ const MessageThread = (props) => {
                     let test = consolidateImages(images);
                     return (
                         <li key={key}>
-                            <div>
+                            <div className="lineWrapper">
                                 <span className={styleName + "Span"}>
                                     {item.author}
                                 </span>
