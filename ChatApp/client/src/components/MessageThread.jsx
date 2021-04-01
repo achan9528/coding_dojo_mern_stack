@@ -10,6 +10,7 @@ const MessageThread = (props) => {
     }, [props])
 
     const scrollToBottom = () => {
+        document.getElementById("documentBody").scrollIntoView()
         document.getElementById("dummy").scrollIntoView(
             true
         );
@@ -20,13 +21,13 @@ const MessageThread = (props) => {
             <img src={src}></img>
         )
     }
-    const consolidateImages = (imgList) =>{
-        return(
+    const consolidateImages = (imgList) => {
+        return (
             <ul className="unbulleted-noPadding">
                 {
-                    imgList.map((item,key) =>{
+                    imgList.map((item, key) => {
                         console.log(item);
-                        return(
+                        return (
                             <li key={key}>{item}</li>
                         )
                     })
@@ -40,9 +41,9 @@ const MessageThread = (props) => {
                 props.messages.map((item, key) => {
                     let styleName = ""
                     if (item.author == props.username) {
-                        styleName="userMessage"
+                        styleName = "userMessage"
                     } else {
-                        styleName="otherMessage"
+                        styleName = "otherMessage"
                     }
 
                     let images = []
@@ -52,14 +53,22 @@ const MessageThread = (props) => {
                             images.push(findImages(item.message.images[i]));
                         }
                     }
-                    
+
                     let test = consolidateImages(images);
                     return (
                         <li key={key}>
-                            <div className={styleName}>
-                                {item.message.text}
-                                {consolidateImages(images)}
+                            <div>
+                                <span className={styleName + "Span"}>
+                                    {item.author}
+                                </span>
+                                <ul className={styleName}>
+                                    <li>{item.message.text}</li>
+                                    <li>{item.message.translation}</li>
+                                    <li>{consolidateImages(images)}</li>
+                                </ul>
                             </div>
+                            {/* <p>Test</p> */}
+
                         </li>
                     )
                 })

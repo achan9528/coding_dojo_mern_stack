@@ -1,14 +1,23 @@
+#documentBody{
+    height: 90vh;
+}
+
 .chatRoom{
-    width:75%
+    width: 100%;
+    height: 100%;
 }
 
 .message-thread{
     overflow-y: scroll;
     list-style-type: none;
-    margin: auto;
-    padding: 0px;
-    height: 250px;
-    width: 75%;
+    margin: 0px 5%;
+    padding: 0%;
+    height: 90%;
+    width: 90%;
+}
+
+.message-thread::-webkit-scrollbar {
+    display: none;
 }
 
 .unbulleted-noPadding{
@@ -25,34 +34,101 @@
     word-wrap: normal;
     margin-top: 10px;
     margin-bottom: 10px;
+    /* font-family: 'Courier New', Courier, monospace; */
+    font-size: 32px;
+    animation: fadeIn 1s;
+}
+
+.message-thread .lineWrapper{
+    position: relative;
+    left: 0%;
+}
+
+.message-thread li:hover {
+    background-color:beige;
+}
+
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity: 1;}
 }
 
 .message-thread .userMessage{
-    max-width: 75%;
+    max-width: 65%;
     text-align: left;
+    display: inline-block;
+    /* display: block; */
+    vertical-align: top;
+    list-style-type: none;
+    margin: 0%;
+    padding-left: 1%;
 }
 
 .message-thread .otherMessage{
-    max-width: 75%;
+    max-width: 65%;
     text-align: left;
     position: relative;
-    left: 25%;
+    display: inline-block;
+    vertical-align: top;
+    /* left: 25%; */
+    vertical-align: top;
+    list-style-type: none;
+    margin: 0%;
+    padding-left: 1%
 }
 
+.message-thread .userMessage li{
+    margin: 0%;
+}
+
+.message-thread .otherMessage li{
+    margin: 0%;
+}
+
+.message-thread .userMessageSpan{
+    color:cadetblue;
+    /* display: inline-block; */
+    vertical-align: top;
+    
+}
+
+.message-thread .otherMessageSpan{
+    color:chocolate;
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;
+
+}
 .messageInput{
     overflow: auto;
-    height: 75%;
+    height: 10%;
     width: 75%;
-    margin: auto;
+    margin: 5% auto;
+    position: sticky;
+}
+
+.messageInput select{
+    width: 12.5%;
+    vertical-align: top;
+    margin-right: 2.5%;
 }
 
 .messageInput div{
-    width: 75%;
-    border: 2px solid black;
+    width: 60%;
+    border-bottom: 2px solid black;
     display: inline-block;
 }
+
+.messageInput div:focus{
+    outline:none;
+} 
 
 .messageInput button{
     vertical-align: top;
     display: inline-block;
+    margin: 0% 1%;
+}
+
+.messageInput img{
+    max-width: 75%;
 }

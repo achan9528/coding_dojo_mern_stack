@@ -19,7 +19,7 @@ function App() {
           Learn React
         </a> */}
       {/* </header> */}
-      <body>
+      <body id="documentBody">
         <Chat></Chat>
       </body>
     </div>

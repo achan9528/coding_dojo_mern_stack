@@ -6,9 +6,11 @@ import HomePage from './HomePage'
 
 function Chat() {
     const [userName, setUsername] = useState("");
+    const [socketName, setSocketName] = useState("");
 
-    const usernameSubmit = (username) => {
-        setUsername(username);
+    const submitHandler = (userName, socketName) => {
+        setUsername(userName);
+        setSocketName(socketName);
     }
 
     const test = (
@@ -17,11 +19,13 @@ function Chat() {
 
     if (userName) {
         return (
-            <ChatRoom username={userName}></ChatRoom>
+            <ChatRoom userName={userName}
+                socketName={socketName}></ChatRoom>
         )
     } else {
         return (
-            <HomePage usernameSubmit={usernameSubmit}></HomePage>
+            <HomePage submitHandler={submitHandler}
+                selectSocket={setSocketName}></HomePage>
         )
     }
 }

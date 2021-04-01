@@ -4,15 +4,28 @@ import '../ChatApp.css';
 import MessageBox from './MessageBox'
 import MessageThread from './MessageThread'
 
+
 const ChatRoom = (props) => {
     // notice that we pass a callback function to initialize the socket
     // we don't need to destructure the 'setSocket' function since we won't be updating the socket state
-    const [socket] = useState(() => io(':8000'));
+    // const [socket] = useState(() => io(':8000'));
+    const [socket] = useState(() => {
+        // if props has a namespace for the server, then use it
+        // else generate one dynamically. The server file should
+        // have some code that allows a regEx to be used to access
+        // the sub-namespace
+        if (props.socketName) {
+            // createChatRoom(props.socketName)
+            // io(':8000/' + props.socketName);
+            return io(':8000/' + props.socketName);
+        } else {
+            return io(':8000/')
+        }
+    });
     const [messages, setMessages] = useState([]);
     useEffect(() => {
         // we need to set up all of our event listeners
         // in the useEffect callback function
-        console.log('Is this running?');
         socket.on('Welcome', data => console.log(data));
         socket.on('new_message_from_server', data => {
             console.log(data.message);
@@ -32,13 +45,14 @@ const ChatRoom = (props) => {
     }, []);
 
     const submitMessage = (msg) => {
-        socket.emit("event_from_client", {message:msg, author:props.username});
+        console.log(msg);
+        socket.emit("event_from_client", { message: msg, author: props.userName });
     }
 
     return (
         <div className="chatRoom">
-            <h1>MERN Chat</h1>
-            <MessageThread username={props.username} messages={messages}></MessageThread>
+            {/* <h1>MERN Chat</h1> */}
+            <MessageThread username={props.userName} messages={messages}></MessageThread>
             <MessageBox submitMessage={submitMessage}></MessageBox>
         </div>
     )
