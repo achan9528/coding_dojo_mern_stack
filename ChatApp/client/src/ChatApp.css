@@ -28,6 +28,8 @@
     border: none;
     padding: 0px;
     margin: 5px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+    animation: arrow 1000ms linear infinite;
 }
 
 .arrow::after, .arrow::before{
@@ -54,8 +56,17 @@
     transform: rotate(-45deg);
 }
 
-.arrow:hover {
-    box-shadow: grey;
+@keyframes arrow {
+    from {
+        position: relative;
+        left: 0px;
+    }
+
+    to {
+        position: relative;
+        left: 5px;
+    }
+
 }
 
 #documentBody{
@@ -71,7 +82,7 @@
 .message-thread{
     overflow-y: scroll;
     list-style-type: none;
-    margin: 0px 5%;
+    margin: auto;
     padding: 0%;
     height: 90%;
     width: 90%;
@@ -93,19 +104,12 @@
 
 .message-thread li{
     word-wrap: normal;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    hyphens: auto;
+    margin-top: 1%;
+    margin-bottom: 1%;
     /* font-family: 'Courier New', Courier, monospace; */
-    font-size: 32px;
+    /* font-size: 32px; */
     animation: fadeIn 1s;
-}
-
-.message-thread .lineWrapper{
-    display: inline-block;
-    display: block;
-    display:inline;
-    position: relative;
-    left: -20%;
 }
 
 .message-thread li:hover {
@@ -118,10 +122,10 @@
 }
 
 .message-thread .userMessage{
-    max-width: 65%;
+    max-width: 75%;
     text-align: left;
-    display: inline-block;
-    /* display: block; */
+    /* display: inline-block; */
+    display: block;
     vertical-align: top;
     list-style-type: none;
     margin: 0%;
@@ -130,25 +134,38 @@
 }
 
 .message-thread .otherMessage{
-    max-width: 65%;
-    text-align: left;
+    max-width: 72.5%;
+    text-align: right;
     position: relative;
-    display: inline-block;
-    vertical-align: top;
-    /* left: 25%; */
-    vertical-align: top;
+    display: block;
+    left: 25%;
     list-style-type: none;
     margin: 0%;
-    padding-left: 1%;
     hyphens: auto;
+    padding: 0px;
+    margin-right: 2.5%;
 }
 
-.message-thread .userMessage li{
-    margin: 0%;
+.author{
+    display: inline-block;
+    margin: 1% 0%;
+    vertical-align: top;
+    max-width: 24%;
+    margin-right: 1%;
 }
 
-.message-thread .otherMessage li{
-    margin: 0%;
+.message{
+    display: inline-block;
+    margin: 1% 0%;
+    vertical-align: top;
+    max-width: 75%;
+}
+
+.userMessage li ul li, .otherMessage li ul li{
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
 }
 
 .message-thread .userMessageSpan{

@@ -57,18 +57,24 @@ const MessageThread = (props) => {
                     let test = consolidateImages(images);
                     return (
                         <li key={key}>
-                            <div className="lineWrapper">
-                                <span className={styleName + "Span"}>
+                                {/* <span className={styleName + "Span"}>
                                     {item.author}
-                                </span>
+                                </span> */}
                                 <ul className={styleName}>
-                                    <li>{item.message.text}</li>
-                                    <li>{item.message.translation}</li>
-                                    <li>{consolidateImages(images)}</li>
+                                    <li className="author">
+                                        <span className={styleName + "Span"}>
+                                            {item.author}
+                                        </span>
+                                    </li>
+                                    <li className="message">
+                                        <ul className="unbulleted-noPadding">
+                                            <li>{item.message.text}</li>
+                                            <li>{item.message.translation}</li>
+                                            <li>{consolidateImages(images)}</li>
+                                        </ul>
+                                    </li>
+                                    
                                 </ul>
-                            </div>
-                            {/* <p>Test</p> */}
-
                         </li>
                     )
                 })
